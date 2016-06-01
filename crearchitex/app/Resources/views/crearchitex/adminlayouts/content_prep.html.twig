@@ -1,0 +1,50 @@
+<?php
+
+/* 
+* Symfony creArchiteX project
+* by Alexandre HARELIMANA
+* under Pr. Gregory Berger's advises
+*/
+    $liste_aff = "";
+
+ foreach ($result as $r)
+    {
+        $projet_categorie_id      = convertFromDB($r["projet_categorie_id"]);
+        $categorie          = convertFromDB($r["categorie"]);
+        $description      = convertFromDB($r["description"]);
+        $is_visible   = convertFromDB($r["is_visible"]);
+
+        if ($is_visible == "0")
+        {
+            $a_affichage      = "activation";
+            $action_affichage = "active";
+            $a_ico            = "ico_visible";
+            $tr_class         = " class='invisible'";
+            $title            = "activer";
+        }
+        else
+        {
+            $a_affichage      = "suppression";
+            $action_affichage = "desactive";
+            $a_ico            = "ico_hidden";
+            $tr_class         = "";
+            $title            = "désactiver";
+        }
+
+        $liste_aff .= "<tr$tr_class>\n";
+        $liste_aff .= "<td>$projet_categorie_id</td>\n";
+        $liste_aff .= "<td>$categorie</td>\n";
+        $liste_aff .= "<td>$description</td>\n";
+        
+        $liste_aff .= "<td>$is_visible</td>\n";
+        
+        $liste_aff .= "<td>\n";
+        $liste_aff .= "<a href='index.php?p=admin_categories&action=update&id=$projet_categorie_id'><img src='img/ico_edit.png' title='éditer' alt='éditer' class='ico_action' /></a>\n";
+        $liste_aff .= "<a href='index.php?p=admin_categories&action=$action_affichage&id=$projet_categorie_id'><img src='img/$a_ico.png' title='$title' alt='$a_affichage' class='ico_action' /></a>\n";
+        if ($is_visible == 0)
+        {
+            $liste_aff .= "<a href='index.php?p=admin_categories&action=delete&id=$projet_categorie_id'><img src='img/ico_trash.png' title='supprimer' alt='supprimer' class='ico_action' /></a>\n";
+        }
+        $liste_aff .= "</td>\n";
+        $liste_aff .= "</tr>\n";
+    }

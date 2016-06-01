@@ -1,0 +1,33 @@
+<?php
+/* 
+* Symfony creArchiteX project
+* by Alexandre HARELIMANA
+* under Pr. Gregory Berger's advises
+*/
+{% extends 'crearchitex/layout.html.twig' %}
+
+{%block content %}
+    {% if categorie is not null %}
+
+        <div>
+        <p><a href='index.php?p=admin_categories&action=add' class='button'>Ajouter categorie</a></p>
+
+        <table class="u-full-width">
+        <tr>
+        <th>projet_categorie_id</th>
+        <th>categorie</th>
+        <th>description</th>
+        <th>Is-visible</th>
+        <th>Modify</th>
+        </tr>
+        
+        {%block contentCateg %}
+            
+        {%endblock%}
+        </table>
+        </div>
+    {% else %} 
+        <h2 class="text-danger">Aucun résultat pour la recherche</h2>
+    {% endif %}
+
+{%endblock%}

@@ -1,0 +1,57 @@
+{% extends 'crearchitex/layout/content.html.twig' %}
+{% block title %} {{HomeContents.Title}} {% endblock %}
+{% block content %}
+    {% block MainTitle %}
+        <h1 class="txt_align">
+            {{HomeContents.MainTitle_1}} <span>{{HomeContents.CompanyName}}</span>{{HomeContents.MainTitle_2}}
+        </h1> 
+    {% endblock %}
+    <div class="sliders"> 
+        <div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+                {% block sliders %}
+                    {% for slider in HomeContents.Sliders %}
+                        <img src="{{asset(slider)}}" data-thumb="{{asset(slider)}}" alt=""/> 
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="home_bloc_3 over_flow">
+        {% block services %}
+             <!--construction-->
+            <div class="fl hb_3">
+                <div class="hb_3_rond_1"><p>1</p></div>
+                <h2>{{HomeContents.Services.construction}}</h2>
+                <p>{{HomeContents.ServicesDescription.construction}}</p>
+            </div>
+             <!--rénovation-->
+            <div class="fl hb_3">
+                <div class="hb_3_rond_2"><p>2</p></div>
+                <h2>{{HomeContents.Services.renovation}}</h2>
+                <p>{{HomeContents.ServicesDescription.renovation}}</p>
+            </div>
+            <!--intérieur-->
+            <div class="fl hb_3">
+                <div class="hb_3_rond_3"><p>3</p></div>
+                <h2>{{HomeContents.Services.interieur}}</h2> 
+                <p>{{HomeContents.ServicesDescription.interieur}}</p>
+            </div>
+        {% endblock %}
+    </div>
+    <h2 class="ligne_apres"><span>{{HomeContents.TravauxRecentMainTitle}}</span></h2>
+    <div class="home_bloc_4 over_flow">
+        {% block TraveauxRecents %}
+            {% for travaux in HomeContents.TravauxRecentContents %}
+                    <div class="fl hb_4">
+                        <div class="hb_4_img">
+                            <img src="{{asset(travaux.images)}}" width="300" height="200" alt=""/>
+                        </div>
+                        <a href="#"> <h3>{{travaux.titre}}</h3></a> <!--link: architecture Design-->
+                        <p>{{travaux.DateAjout}}</p>
+                        <p>{{travaux.description}}</p>
+                    </div>
+            {% endfor %}
+        {% endblock %}
+    </div>
+{% endblock %}

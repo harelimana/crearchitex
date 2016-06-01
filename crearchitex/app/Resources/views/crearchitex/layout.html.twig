@@ -1,0 +1,27 @@
+{# deuxième étape du pattern appelé "Triple héritage" #}
+{# le template layout étend le template de base de l'application #}
+{% extends "base.html.twig" %}
+{# il a donc accès aux block qui ont été définis dans le parent #}
+{# et peut les surcharger #}
+{% block title %}Jazz musicians List{% endblock %}
+
+{# on peut également définir d'autres blocks  #}
+{% block main_content %}
+    <div class="col-md-12">
+        {# lien vers la home page #}
+        <h1 class="jumbotron text-center title"><a href="{{ path('home') }}">Jazz Musicians Index</a></h1>
+        <div class="center-block">
+            {# qui pourron à leur tour être surchargés par les templates enfants #}
+            {%block content %}
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+
+                {# utilisation de la fonction path() qui prend un *nom de route* (tel que défini dans l'annotation) en paramètre  #}
+                <ul>
+                    <li><a href="{{ path('artists_list') }}">Voir la liste</a></li>
+                    <li><a href="{{ path('artist_add') }}">Ajouter un artiste</a></li>
+                </ul>
+            {% endblock %}
+        </div>
+    </div>
+    
+{% endblock %}
