@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for event in eventss %}
+<div> 
+	<h2>{{event.nom}}</h2>
+        <h3 class="text-primary">{{event.description}}</h3>
+        <p>{{event.lieu}}</p>
+        <p>{{event.debut}}</p>
+        <p>{{event.fin}}</p>
+        <p>{{event.categorie_id}}</p>
+	<table class="table">
+		<tr>
+			<td><a href="/modification_events/{{event.id}}" class="btn btn-default">Modifier</a>     
+			<a href="/supprimer_abonnes/{{event.id}}" class="btn btn-danger pull-right">Supprimer</a></td>
+		</tr>
+	</table>
+</div>
+{% endfor %}
+{% endblock %}
